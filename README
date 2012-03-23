@@ -1,0 +1,27 @@
+RssComponent for CakePHP 2.x
+---
+
+This component allows you to read (external) RSS feeds and use their data in your own application.
+For example, if you would like to show the latest news of a site that is of interest to your audience,
+you can use this component to fetch the latest articles of their feed to publish in your app.
+
+
+CODE EXAMPLE:
+
+1. Implement the component into your controller by using:
+
+	public $components = array('Rss');
+
+2. Call the component in your controller, to fetch the items from an RSS feed. For example if you want to set the $news array, containing the contents:
+
+    public function beforeRender() {
+        try {
+            $newsItems = $this->Rss->read('http://example.com/feed');
+        } catch(InternalErrorException $e) {
+            $newsItems = null;
+        }
+     
+        $this->set('news', $newsItems);
+    }
+
+---
